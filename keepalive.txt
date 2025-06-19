@@ -1,0 +1,19 @@
+# Keepalive Instructions for Uptime Robot
+
+To keep your Render deployment always on, use Uptime Robot to ping your website at regular intervals.
+
+## Steps:
+1. Go to https://uptimerobot.com/
+2. Create a free account (if you don't have one).
+3. Add a new monitor:
+   - Monitor Type: HTTP(s)
+   - Friendly Name: Your Website Keepalive
+   - URL: https://your-render-app-url.onrender.com/
+   - Monitoring Interval: 5 minutes (default)
+4. Save the monitor.
+
+Uptime Robot will ping your site every 5 minutes, preventing it from sleeping.
+
+---
+
+You can safely delete this file if you no longer need keepalive instructions. 
