@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggressive Back Office - From Chaos to Clarity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #d1d5db;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #1e3a8a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 5rem 2rem;
+            width: 100%;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #ffffff;
+        }
+
+        .problem ul {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .problem ul li {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .problem ul li::before {
+            content: '•';
+            color: #3b82f6;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Service Introduction */
+        .service-intro {
+            background: linear-gradient(135deg, #e6f0fa, #ffffff);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #ffffff;
+        }
+
+        .steps-journey {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+            margin-top: 3rem;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .step-milestone {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin: 0 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.25s cubic-bezier(.4,2,.3,1), box-shadow 0.25s cubic-bezier(.4,2,.3,1);
+            will-change: transform, box-shadow;
+        }
+        .step-milestone:hover {
+            transform: translateY(-12px) scale(1.07);
+            box-shadow: 0 8px 32px rgba(59,130,246,0.18), 0 2px 10px rgba(0,0,0,0.10);
+            z-index: 2;
+        }
+
+        .before-card {
+            min-width: 220px;
+            max-width: 220px;
+            width: 220px;
+        }
+
+        .step-marker {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 28px;
+            height: 28px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 4px solid #e6f0fa;
+            box-shadow: 0 2px 8px rgba(59,130,246,0.10);
+        }
+
+        .step-flag {
+            display: block;
+            margin-top: -4px;
+        }
+
+        .step-content {
+            margin-top: 0.5rem;
+        }
+
+        .step-milestone h3 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #1e3a8a;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .step-milestone p {
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        .step-dotted {
+            flex: 0 0 40px;
+            height: 4px;
+            align-self: center;
+            background: repeating-linear-gradient(
+                to right,
+                #3b82f6,
+                #3b82f6 8px,
+                transparent 8px,
+                transparent 16px
+            );
+            border-radius: 2px;
+            margin-top: 2.5rem;
+        }
+
+        .steps-journey .step-milestone.final .step-marker {
+            top: 0;
+        }
+
+        .steps-journey .step-milestone.final .step-flag {
+            margin-top: 0;
+        }
+
+        .step {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        /* Features */
+        .features {
+            background: linear-gradient(135deg, #e6f0fa, #ffffff);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature h3 {
+            font-size: 1.25rem;
+            color: #1e3a8a;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Target Audience */
+        .target-audience {
+            background: #ffffff;
+        }
+
+        /* Before & After */
+        .before-after {
+            background: linear-gradient(135deg, #e6f0fa, #ffffff);
+        }
+
+        .ba-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .ba-comparison.improved {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ba-card.before {
+            background: #fff5f5;
+            border: 2px solid #f87171;
+            color: #b91c1c;
+        }
+
+        .ba-card.after {
+            background: #f0fdf4;
+            border: 2px solid #34d399;
+            color: #065f46;
+            box-shadow: 0 4px 24px 0 rgba(52, 211, 153, 0.08);
+        }
+
+        .ba-card {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .ba-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ba-arrow {
+            font-size: 3rem;
+            color: #3b82f6;
+            font-weight: bold;
+            margin: 0 1rem;
+            user-select: none;
+        }
+
+        .ba-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: #ffffff;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: #f9fafb;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card p.price {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #e6f0fa, #ffffff);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial h4 {
+            font-size: 1rem;
+            color: #1e3a8a;
+        }
+
+        /* FAQs */
+        .faqs {
+            background: #ffffff;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .faq {
+            margin-bottom: 1rem;
+            background: #f9fafb;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            color: #1e3a8a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e6f0fa;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #d1e0f7;
+        }
+
+        .faq-question::after {
+            content: '▼';
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            color: #4b5563;
+            background: #fff;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+        }
+
+        .faq.active .faq-answer {
+            max-height: 200px;
+            padding: 1.5rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .faq.active .faq-question {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #d1d5db;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .final-cta h2 {
+            color: white;
+        }
+
+        .final-cta p {
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(30, 58, 138, 0.25);
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .steps, .feature-grid, .pricing-grid, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .faq-question {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .steps-journey {
+                flex-direction: column;
+                align-items: center;
+            }
+            .step-dotted {
+                width: 4px;
+                height: 40px;
+                background: repeating-linear-gradient(
+                    to bottom,
+                    #3b82f6,
+                    #3b82f6 8px,
+                    transparent 8px,
+                    transparent 16px
+                );
+                margin: 0 0 0 0;
+            }
+            .step-milestone {
+                margin: 0.5rem 0;
+            }
+            .step-marker {
+                left: 50%;
+                top: 0;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { max-height: 0; padding: 0; }
+            to { max-height: 200px; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Aggressive Back Office</div>
+        <ul>
+            <li><a href="#home">ホーム</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#pricing">料金</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>整え、つなぎ、進める。<br>バックオフィスから、企業の"推進力"を生み出す。</h1>
+            <p>事業が伸びるほど生まれる「すれ違い」「曖昧さ」「混乱」。<br>それは"内部整備"が追いついていないサインかもしれません。<br>攻めるバックオフィスは、組織の"足元"を整え、経営の推進力を取り戻します。</p>
+            <a href="#contact" class="cta-button">無料相談を申し込む</a>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section id="problem" class="problem">
+        <div class="container">
+            <h2>経営者が感じる「なんとなくの違和感」</h2>
+            <p>事業が成長していくにつれ、こんなことは起こっていませんか？</p>
+            <ul>
+                <li>手が回らない業務が増えてきた</li>
+                <li>整えたい業務こそ、後回しになっている</li>
+                <li>社内外・現場と経営のやりとりが錯綜</li>
+                <li>誰が何をどうやるのか曖昧</li>
+                <li>属人化が進み、制度やルールが曖昧</li>
+                <li>情報の分散により判断や実行にズレが生まれる</li>
+        </ul>
+            <p>知らぬ間に積み重なる"複雑化"と"多様化"が、現場を疲弊させ、経営スピードを奪っていきます。</p>
+        </div>
+    </section>
+
+    <!-- Service Introduction -->
+    <section id="services" class="service-intro">
+        <div class="container">
+            <h2>「攻めるバックオフィス」とは？</h2>
+            <p>外部のプロが"組織の中"に入り込み、人・業務・組織の本質課題を見える化し、仕組みで解決していく実行型・サブスク支援サービスです。<br>属人化や混乱の要因を整理し、再現性のある組織基盤を構築し、経営者が"攻め"に集中できる状態をつくります。</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>サービスの流れ</h2>
+            <div class="steps-journey">
+                <div class="step-milestone before-card">
+                    <div class="step-marker"><div class="step-circle"></div></div>
+                    <div class="step-content">
+                        <h3>Before</h3>
+                        <p>属人化・曖昧な分担、情報分散・引継ぎ漏れ、経営者が現場対応に忙殺…</p>
+                    </div>
+                </div>
+                <div class="step-dotted"></div>
+                <div class="step-milestone">
+                    <div class="step-marker"><div class="step-circle"></div></div>
+                    <div class="step-content">
+                        <h3>STEP 1｜見える</h3>
+                        <p>現状把握・ヒアリング・構造整理</p>
+                    </div>
+                </div>
+                <div class="step-dotted"></div>
+                <div class="step-milestone">
+                    <div class="step-marker"><div class="step-circle"></div></div>
+                    <div class="step-content">
+                        <h3>STEP 2｜つなげる</h3>
+                        <p>課題整理・設計・優先順位付け</p>
+                    </div>
+                </div>
+                <div class="step-dotted"></div>
+                <div class="step-milestone">
+                    <div class="step-marker"><div class="step-circle"></div></div>
+                    <div class="step-content">
+                        <h3>STEP 3｜進める</h3>
+                        <p>定着支援・実行伴走・運用安定化</p>
+                    </div>
+            </div>
+                <div class="step-milestone final">
+                    <div class="step-marker">
+                        <!-- SVG Flag Icon -->
+                        <svg class="step-flag" width="32" height="32" viewBox="0 0 24 24" fill="none">
+                          <path d="M6 3v18" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M6 4h12l-2 4 2 4H6" fill="#3b82f6" stroke="#3b82f6" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+            </div>
+                    <div class="step-content">
+                        <h3>After</h3>
+                        <p>業務フロー・役割が明確化、情報一元化、経営者が「攻め」に集中…</p>
+            </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2>支援範囲・内容</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                    <h3>業務フローの整理と仕組み化</h3>
+                    <p>属人業務の可視化・標準化、フロー設計とツール導入支援</p>
+            </div>
+            <div class="feature">
+                    <h3>組織体制と役割設計</h3>
+                    <p>最適な部門設計・人材配置、チーム間の連携改善・業務分担設計</p>
+            </div>
+            <div class="feature">
+                    <h3>コーポレート機能の構築、サポート</h3>
+                    <p>人事・労務・経理・総務の整備、ルールや制度の設計・運用支援</p>
+            </div>
+            <div class="feature">
+                    <h3>経営課題の構造化と壁打ち</h3>
+                    <p>現場と経営のズレの見える化、経営者の"考える時間"の確保</p>
+            </div>
+            <div class="feature">
+                    <h3>運用定着まで一貫伴走</h3>
+                    <p>整備から運用定着まで一貫伴走</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section class="target-audience">
+        <div class="container">
+            <h2>対象となる方</h2>
+            <p>10～20名規模の経営者で、HR・管理・オペレーションを兼務している方。ジム、クリニック、飲食、D2C、制作会社などに最適です。</p>
+        </div>
+    </section>
+
+    <!-- Before & After -->
+    <section class="before-after">
+        <div class="container">
+        <h2>Before & After</h2>
+            <div class="ba-comparison improved">
+                <div class="ba-card before">
+                    <div class="ba-icon">
+                        <!-- Warning/Alert SVG Icon -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="12" fill="#fee2e2"/>
+                          <path d="M12 7v5" stroke="#b91c1c" stroke-width="2" stroke-linecap="round"/>
+                          <circle cx="12" cy="16" r="1" fill="#b91c1c"/>
+                        </svg>
+                    </div>
+                <h3>Before</h3>
+                <p>Personalization, ambiguous roles, dispersed information, and management stuck in daily operations.</p>
+            </div>
+                <div class="ba-arrow">
+                    <span>→</span>
+                </div>
+                <div class="ba-card after">
+                    <div class="ba-icon">
+                        <!-- Checkmark/Circle SVG Icon -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="12" fill="#d1fae5"/>
+                          <path d="M8 12.5l3 3 5-5" stroke="#065f46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                <h3>After</h3>
+                <p>Clear workflows, centralized information, and management focused on strategic growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>プラン紹介</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                    <h3>ライトプラン</h3>
+                    <p class="price">10万円〜</p>
+                    <p>部分的な業務整理・業務フローの可視化・月1〜2回の壁打ち支援</p>
+            </div>
+            <div class="pricing-card">
+                    <h3>ベーシックプラン</h3>
+                    <p class="price">20万円〜</p>
+                    <p>業務・組織の課題整理、役割設計、定例支援・改善伴走など</p>
+            </div>
+            <div class="pricing-card">
+                    <h3>フルサポートプラン</h3>
+                    <p class="price">30万円〜</p>
+                    <p>コーポレート機能全体支援、実行伴走、戦略支援、経営者MTG含む</p>
+                </div>
+            </div>
+            <p style="margin-top:1rem;">※契約縛りなし。フェーズに合わせ柔軟にアレンジ可能です。</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>お客様の声</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                    <p>「攻めるバックオフィスのおかげで、現場の混乱が解消し、経営に集中できるようになりました。」</p>
+                    <h4>— ジム経営者</h4>
+            </div>
+            <div class="testimonial">
+                    <p>「クリニックの業務がスムーズになり、スタッフの定着率も向上しました。」</p>
+                    <h4>— クリニック院長</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faqs" class="faqs">
+        <div class="container">
+            <h2>よくあるご質問</h2>
+        <div class="faq-list">
+            <div class="faq">
+                    <div class="faq-question">何からお願いすればいいか分からないのですが、大丈夫ですか？</div>
+                    <div class="faq-answer">もちろん大丈夫です。最初に丁寧なヒアリングを行い、現状の課題を一緒に可視化・整理した上で、「どこから手をつけるべきか？」を一緒に優先順位づけしていきます。</div>
+            </div>
+            <div class="faq">
+                    <div class="faq-question">社内にあまり人材がいないのですが、進められますか？</div>
+                    <div class="faq-answer">はい。人が少ないからこそ、仕組み化と整備が効果を発揮します。属人化しがちな業務を、誰でも回せる形に変えていくことができます。</div>
+            </div>
+            <div class="faq">
+                    <div class="faq-question">特定の分野（人事・経理など）だけお願いすることもできますか？</div>
+                    <div class="faq-answer">はい、対応可能です。ただし表面的な業務代行ではなく、"構造的な課題"を捉えた上での支援を行います。</div>
+            </div>
+            <div class="faq">
+                    <div class="faq-question">期間の縛りはありますか？</div>
+                    <div class="faq-answer">基本的にはサブスクリプション型（月単位）で柔軟に対応可能です。プロジェクトベースのご相談にも対応しています。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta">
+        <div class="container">
+            <h2>バックオフィスを変革しませんか？</h2>
+            <p>無料相談を予約して、組織の推進力を取り戻しましょう。</p>
+            <a href="#" class="cta-button">無料相談を申し込む</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 攻めるバックオフィス. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // FAQ Dropdown
+        document.querySelectorAll('.faq').forEach(faq => {
+            faq.addEventListener('click', () => {
+                faq.classList.toggle('active');
+                const answer = faq.querySelector('.faq-answer');
+                const allFaqs = document.querySelectorAll('.faq');
+                allFaqs.forEach(f => {
+                    if (f !== faq) {
+                        f.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
